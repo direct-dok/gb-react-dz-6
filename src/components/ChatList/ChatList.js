@@ -11,16 +11,16 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 // Action Creator
 import removeUserAction from '../../store/actionCreators/remove_chats_action'
+import removeChatMessages from '../../store/actionCreators/remove_chat_messages_action'
 
 // Selectors 
 import { getChats } from '../../store/selectors/getChats'
+import { getMessage } from '../../store/selectors/getMessage'
 
 const useStyles = makeStyles({
   list: {
@@ -54,13 +54,16 @@ const useStyles = makeStyles({
 })
 
 
-function ChatList({chats, removeChat}) {
-
+function ChatList({chats, messages, removeChat, removeMessages}) {
 
   const classes = useStyles()
 
   const deleteOneChat = (id) => {
     removeChat(id)
+
+    let copyObj = Object.assign({}, messages)
+    delete copyObj[id]
+    removeMessages(copyObj)
   }
 
   return (
@@ -90,14 +93,16 @@ function ChatList({chats, removeChat}) {
 
 const mapStateToProps = (store) => {
   return {
-    chats: getChats(store)
+    chats: getChats(store), 
+    messages: getMessage(store)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeChat: (payload) => dispatch(removeUserAction(payload))
+    removeChat: (payload) => dispatch(removeUserAction(payload)), 
+    removeMessages: (payload) => dispatch(removeChatMessages(payload))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList)

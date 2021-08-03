@@ -1,9 +1,8 @@
-
-import React from 'react';
+import React from 'react'
 
 // Material UI
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
 
 const Error = () => {
 
@@ -15,4 +14,4 @@ const Error = () => {
   );
 }
 
-export default Error;
+export default Error

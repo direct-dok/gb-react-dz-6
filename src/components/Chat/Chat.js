@@ -89,7 +89,7 @@ const Chat = ({chats, chatMessages, addMessage}) => {
   const inputRef = useRef()
 
   useEffect(() => {
-    const currnetUser = chats.filter(elem => elem.id == id);
+    const currnetUser = chats.filter(elem => elem.id == id)
     setUser(currnetUser[0])
   }, [id])
 
@@ -109,8 +109,6 @@ const Chat = ({chats, chatMessages, addMessage}) => {
   const getDataForm = (e) => {
     e.preventDefault()
 
-    console.log('getDataForm')
-
     if(authorField.length > 0 && messageFied.length > 0) {
 
       setAuthorList((oldArray) => [...oldArray, authorField])
@@ -123,7 +121,7 @@ const Chat = ({chats, chatMessages, addMessage}) => {
 
     }
 
-    inputRef.current.focus();
+    inputRef.current.focus()
   }
 
   return (
@@ -218,4 +216,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chat);
+export default connect(mapStateToProps, mapDispatchToProps)(Chat)

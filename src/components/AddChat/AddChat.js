@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 
 const AddChat = (props) => {
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   
   // console.log('addChat - ', props.addChat())
@@ -74,11 +74,11 @@ const AddChat = (props) => {
   }
 
   const handleOpen = () => {
-    setOpen(true);
+    setOpen(true)
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen(false)
   };
   
  return (
@@ -169,4 +169,4 @@ const AddChat = (props) => {
  )
 }
 
-export default AddChat;
+export default AddChat

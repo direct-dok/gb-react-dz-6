@@ -1,8 +1,8 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 // Material UI
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
 
 const useStyles = makeStyles({
     messageUser: {
