@@ -1,22 +1,23 @@
-import React from 'react';
-import { useState } from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 // Material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
 
 // My Components 
 import ChatList from '../ChatList'
-import AddChat from '../AddChat';
+import AddChat from '../AddChat'
 
 // Action Creator 
 import { addNewChat } from '../../store/actionCreators/add_chats_action'
+import { addNewChatMessages } from '../../store/actionCreators/add_new_chat_messages_action'
 
 // Selectors 
 import { getChats } from '../../store/selectors/getChats'
+import { getMessage } from '../../store/selectors/getMessage'
 
 const useStyles = makeStyles({
   caption: {
@@ -39,12 +40,12 @@ const useStyles = makeStyles({
   }
 })
 
-const Home = ({chats, addChat}) => {
+const Home = ({chats, messages, addChat, addChatMessages}) => {
 
   const classes = useStyles()
 
-
   const addChats = (name, status, message) => {
+
     const obj = {
       id: chats[chats.length - 1].id + 1, 
       status: status, 
@@ -53,8 +54,9 @@ const Home = ({chats, addChat}) => {
       message: message
     }
     addChat(obj)
+    addChatMessages(chats[chats.length - 1].id + 1)
+    
   }
-
 
   return (
     <>
@@ -80,13 +82,15 @@ const Home = ({chats, addChat}) => {
 
 const mapStateToProps = (store) => {
   return {
-    chats: getChats(store)
+    chats: getChats(store), 
+    messages: getMessage(store)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addChat: (payload) => dispatch(addNewChat(payload))
+    addChat: (payload) => dispatch(addNewChat(payload)), 
+    addChatMessages: (payload) => dispatch(addNewChatMessages(payload))
   }
 }
 
